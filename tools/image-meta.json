@@ -1,0 +1,220 @@
+{
+ "burger-and-fries": {
+  "w": 2479,
+  "h": 1999,
+  "widths": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "dir": "food"
+ },
+ "chip-chop": {
+  "w": 827,
+  "h": 1169,
+  "widths": [
+   480,
+   827
+  ],
+  "dir": "food"
+ },
+ "cover-good-to-see-you": {
+  "w": 1653,
+  "h": 2338,
+  "widths": [
+   480,
+   960,
+   1600,
+   1653
+  ],
+  "dir": "brand"
+ },
+ "fiery-dawg": {
+  "w": 884,
+  "h": 1064,
+  "widths": [
+   480,
+   884
+  ],
+  "dir": "food"
+ },
+ "goreng-bowl": {
+  "w": 2479,
+  "h": 1754,
+  "widths": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "dir": "food"
+ },
+ "goreng-goreng": {
+  "w": 1653,
+  "h": 1485,
+  "widths": [
+   480,
+   960,
+   1600,
+   1653
+  ],
+  "dir": "food"
+ },
+ "manwich-stack": {
+  "w": 2479,
+  "h": 1509,
+  "widths": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "dir": "food"
+ },
+ "manwich": {
+  "w": 1653,
+  "h": 936,
+  "widths": [
+   480,
+   960,
+   1600,
+   1653
+  ],
+  "dir": "food"
+ },
+ "melts": {
+  "w": 1323,
+  "h": 713,
+  "widths": [
+   480,
+   960,
+   1323
+  ],
+  "dir": "food"
+ },
+ "mighty-loaded-sub": {
+  "w": 1322,
+  "h": 1059,
+  "widths": [
+   480,
+   960,
+   1322
+  ],
+  "dir": "food"
+ },
+ "pasta-pan": {
+  "w": 1653,
+  "h": 1122,
+  "widths": [
+   480,
+   960,
+   1600,
+   1653
+  ],
+  "dir": "food"
+ },
+ "rockets-jumbo-sub": {
+  "w": 1653,
+  "h": 851,
+  "widths": [
+   480,
+   960,
+   1600,
+   1653
+  ],
+  "dir": "food"
+ },
+ "rockets-sub-closeup": {
+  "w": 2479,
+  "h": 1034,
+  "widths": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "dir": "food"
+ },
+ "rocking-wok": {
+  "w": 1653,
+  "h": 1309,
+  "widths": [
+   480,
+   960,
+   1600,
+   1653
+  ],
+  "dir": "food"
+ },
+ "shake-shakes": {
+  "w": 1653,
+  "h": 510,
+  "widths": [
+   480,
+   960,
+   1600,
+   1653
+  ],
+  "dir": "food"
+ },
+ "triple-burger": {
+  "w": 1653,
+  "h": 1286,
+  "widths": [
+   480,
+   960,
+   1600,
+   1653
+  ],
+  "dir": "food"
+ },
+ "valho-king": {
+  "w": 1388,
+  "h": 1239,
+  "widths": [
+   480,
+   960,
+   1388
+  ],
+  "dir": "food"
+ },
+ "wtf-nachos": {
+  "w": 2479,
+  "h": 1526,
+  "widths": [
+   480,
+   960,
+   1600,
+   2400
+  ],
+  "dir": "food"
+ },
+ "yo-kebab": {
+  "w": 1653,
+  "h": 1379,
+  "widths": [
+   480,
+   960,
+   1600,
+   1653
+  ],
+  "dir": "food"
+ },
+ "logo-full-white": {
+  "w": 461,
+  "h": 900
+ },
+ "logo-full-black": {
+  "w": 461,
+  "h": 900
+ },
+ "logo-mark-white": {
+  "w": 266,
+  "h": 400
+ },
+ "logo-mark-black": {
+  "w": 266,
+  "h": 400
+ }
+}

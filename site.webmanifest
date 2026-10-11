@@ -1,0 +1,15 @@
+{
+  "name": "Big Man & Co",
+  "short_name": "Big Man",
+  "start_url": "index.html",
+  "display": "browser",
+  "background_color": "#0d0d0d",
+  "theme_color": "#0d0d0d",
+  "icons": [
+    {
+      "src": "assets/img/brand/logo-square-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
