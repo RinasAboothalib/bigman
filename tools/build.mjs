@@ -45,6 +45,8 @@ const lines = (arr) => arr.map((t, i) => `<span class="line" style="--l:${i}"><s
 const ext = 'target="_blank" rel="noopener"';
 
 const ICON = {
+  instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg>',
+  facebook: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>',
   arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
   up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>',
   left: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>',
@@ -53,6 +55,7 @@ const ICON = {
 };
 
 const telList = (list) => `<div class="tel">${list.map(([n, t]) => `<a href="tel:${n}">${ICON.phone}<span>+960 ${t}</span></a>`).join('')}</div>`;
+const SOCIALS = `<span class="socials"><a href="${L.instagram}" ${ext} aria-label="Big Man on Instagram" title="Instagram">${ICON.instagram}</a><a href="${L.facebook}" ${ext} aria-label="Big Man on Facebook" title="Facebook">${ICON.facebook}</a></span>`;
 
 /* ---------- Shared chrome ---------- */
 function head({ title, desc, path, preload = '', noindex = false }) {
@@ -172,8 +175,7 @@ function footer(page) {
           ${PHONES.dine.map(([n, t]) => `<a href="tel:${n}">+960 ${t}</a>`).join('\n          ')}
           <a href="tel:${PHONES.delivery[0][0]}">+960 ${PHONES.delivery[0][1]} (delivery)</a>
           <a href="mailto:${L.email}">${L.email}</a>
-          <a href="${L.instagram}" ${ext}>Instagram</a>
-          <a href="${L.facebook}" ${ext}>Facebook</a>
+          ${SOCIALS}
         </address>
       </div>
     </div>
@@ -400,8 +402,7 @@ ${nav('home')}
       <p class="reveal">New plates, combos and promos land on our socials first. Follow <strong>@bigman.ith</strong>.</p>
       <div class="reveal" style="--i:1">
         <a class="btn btn--primary" href="gallery.html">View the full gallery ${ICON.arrow}</a>
-        <a class="btn btn--ghost" href="${L.instagram}" ${ext}>Instagram ${ICON.up}</a>
-        <a class="btn btn--ghost" href="${L.facebook}" ${ext}>Facebook ${ICON.up}</a>
+        ${SOCIALS}
       </div>
     </div>
   </div>
@@ -638,8 +639,7 @@ ${phead({ bg: 'wtf-nachos', eyebrow: 'Gallery', title: ['Straight off', 'the gri
     <div class="social">
       <p class="reveal">New plates, combos and promos land on our socials first. Follow <strong>@bigman.ith</strong>.</p>
       <div class="reveal" style="--i:1">
-        <a class="btn btn--ghost" href="${L.instagram}" ${ext}>Instagram ${ICON.up}</a>
-        <a class="btn btn--ghost" href="${L.facebook}" ${ext}>Facebook ${ICON.up}</a>
+        ${SOCIALS}
       </div>
     </div>
   </div>
@@ -711,8 +711,8 @@ ${phead({ bg: 'burger-and-fries', eyebrow: 'Visit us', title: ['Come', 'hungry.'
       <li class="reveal"><span>Email</span><a href="mailto:${L.email}">${L.email}</a></li>
       ${PHONES.dine.map(([n, t]) => `<li class="reveal"><span>Malé</span><a href="tel:${n}">+960 ${t}</a></li>`).join('\n      ')}
       <li class="reveal"><span>Delivery House</span><a href="tel:${PHONES.delivery[0][0]}">+960 ${PHONES.delivery[0][1]}</a></li>
-      <li class="reveal"><span>Instagram</span><a href="${L.instagram}" ${ext}>@bigman.ith</a></li>
-      <li class="reveal"><span>Facebook</span><a href="${L.facebook}" ${ext}>facebook.com/bigman.ith</a></li>
+      <li class="reveal"><span class="reach__icon">${ICON.instagram}</span><a href="${L.instagram}" ${ext} aria-label="Big Man on Instagram, @bigman.ith">@bigman.ith</a></li>
+      <li class="reveal"><span class="reach__icon">${ICON.facebook}</span><a href="${L.facebook}" ${ext} aria-label="Big Man on Facebook, @bigman.ith">@bigman.ith</a></li>
     </ul>
   </div>
 </section>

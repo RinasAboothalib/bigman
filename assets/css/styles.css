@@ -728,3 +728,14 @@ body:not(:has(#m-del:checked)) .only-del { display: none; }
 .toast { position: fixed; left: 50%; bottom: 6rem; z-index: 200; padding: 0.7rem 1.2rem; border-radius: 999px; background: var(--chalk); color: var(--ink); font-weight: 600; font-size: 0.9rem; white-space: nowrap; max-width: calc(100vw - 2rem); overflow: hidden; text-overflow: ellipsis; pointer-events: none; opacity: 0; transform: translate(-50%, 12px); transition: opacity 0.3s, transform 0.4s var(--ease); }
 .toast.is-on { opacity: 1; transform: translate(-50%, 0); }
 @media (min-width: 1000px) { .toast { bottom: 2rem; } }
+
+/* ---------- Social icons ---------- */
+.socials { display: inline-flex; gap: 0.6rem; }
+.socials a { display: grid; place-items: center; width: 3rem; height: 3rem; padding: 0; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.35); color: var(--chalk); background: none; transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.4s var(--ease); }
+.socials a:hover { background: var(--amber); border-color: var(--amber); color: var(--ink); transform: translateY(-3px); }
+.socials svg { width: 1.25rem; height: 1.25rem; }
+.footer address .socials { margin-top: 0.75rem; }
+.footer address .socials a { display: grid; padding: 0; background: none; color: var(--chalk); }
+.footer address .socials a:hover { background: var(--amber); color: var(--ink); }
+.social > div { align-items: center; }
+.reach__icon svg { width: 1.4rem; height: 1.4rem; display: block; color: var(--fog); }
