@@ -4,6 +4,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { SECTIONS, STYLES } from './menu-data.mjs';
+import { CATALOGUE, OPTIONS } from './order-data.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
@@ -12,7 +13,7 @@ const META = JSON.parse(readFileSync(join(here, 'image-meta.json'), 'utf8'));
 /* ---------- Verified business facts (bigmanco.com + official Facebook / Instagram profiles) ---------- */
 const SITE = 'https://bigmanco.com';
 const L = {
-  order: `${SITE}/order`,
+  orderApp: `${SITE}/order`, // redirects to the hosted iPOS247 ordering app
   inhousePdf: `${SITE}/menu/inhouse`,
   deliveryPdf: `${SITE}/menu/delivery`,
   instagram: 'https://www.instagram.com/bigman.ith/',
@@ -20,6 +21,7 @@ const L = {
   maps: 'https://www.google.com/maps/search/?api=1&amp;query=Big+Man+Chaandhanee+Magu+Male+Maldives',
   email: 'info@bigmanco.com',
 };
+const WHATSAPP = '9609446699'; // "Viber / WhatsApp: 9446699" as published in the ordering app
 const PHONES = { dine: [['+9609199333', '919 9333'], ['+9609199961', '919 9961']], delivery: [['+9609446699', '944 6699']] };
 
 /* ---------- Helpers ---------- */
@@ -61,7 +63,7 @@ function head({ title, desc, path, preload = '', noindex = false }) {
     telephone: PHONES.dine[0][0], email: L.email,
     address: { '@type': 'PostalAddress', streetAddress: 'Chaandhanee Magu', addressLocality: 'Malé', postalCode: '20046', addressCountry: 'MV' },
     servesCuisine: ['Burgers', 'Sandwiches'], hasMenu: `${SITE}/menu.html`,
-    potentialAction: { '@type': 'OrderAction', target: L.order },
+    potentialAction: { '@type': 'OrderAction', target: `${SITE}/order.html` },
     sameAs: [L.instagram, L.facebook],
   };
   return `<!doctype html>
@@ -116,7 +118,7 @@ function nav(page) {
     </a>
     <nav class="nav__links" aria-label="Primary">${items.map(link).join('')}</nav>
     <div class="nav__actions">
-      <a class="btn btn--primary btn--sm" href="${L.order}" ${ext}>Order Online ${ICON.arrow}</a>
+      <a class="btn btn--primary btn--sm" href="order.html"${cur('order')}>Order Online ${ICON.arrow}</a>
       <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span><span></span></button>
     </div>
   </div>
@@ -126,7 +128,7 @@ function nav(page) {
     ${items.map(([t, href, k], i) => `<a href="${href}" style="--i:${i}"${cur(k)}><small>0${i + 1}</small>${t}</a>`).join('\n    ')}
   </nav>
   <div class="mmenu__foot">
-    <a class="btn btn--primary" href="${L.order}" ${ext}>Order Online ${ICON.arrow}</a>
+    <a class="btn btn--primary" href="order.html">Order Online ${ICON.arrow}</a>
     <div class="row">
       <a class="btn btn--ghost btn--sm" href="menu.html">In-house menu</a>
       <a class="btn btn--ghost btn--sm" href="menu.html?menu=delivery">Delivery menu</a>
@@ -150,7 +152,7 @@ function footer(page) {
           <li><a href="about.html">About</a></li>
           <li><a href="gallery.html">Gallery</a></li>
           <li><a href="contact.html">Visit us</a></li>
-          <li><a href="${L.order}" ${ext}>Order online</a></li>
+          <li><a href="order.html">Order online</a></li>
         </ul>
       </nav>
       <nav class="reveal" style="--i:2" aria-label="Menus and ordering">
@@ -249,7 +251,7 @@ const CTA_BAND = `<section class="section band">
   <div class="wrap band__inner">
     <h2 class="display h-lg lines">${lines(['Hungry yet?'])}</h2>
     <div class="hero__cta reveal">
-      <a class="btn btn--dark" href="${L.order}" ${ext}>Order Online ${ICON.arrow}</a>
+      <a class="btn btn--dark" href="order.html">Order Online ${ICON.arrow}</a>
       <a class="btn btn--line-dark" href="menu.html">Explore the Menu ${ICON.arrow}</a>
       <a class="btn btn--line-dark" href="contact.html">Visit Us ${ICON.arrow}</a>
     </div>
@@ -277,7 +279,7 @@ ${nav('home')}
     <div class="hero__row">
       <p class="lede fade" style="--i:1">Only grilled burgers. The Manwich. Jumbo subs on fire. Loaded fries and nachos, piled high. 100% meat, always fresh.</p>
       <div class="hero__cta fade" style="--i:2">
-        <a class="btn btn--primary" href="${L.order}" ${ext}>Order Online ${ICON.arrow}</a>
+        <a class="btn btn--primary" href="order.html">Order Online ${ICON.arrow}</a>
         <a class="btn btn--ghost" href="menu.html">Explore the Menu ${ICON.arrow}</a>
       </div>
     </div>
@@ -371,7 +373,7 @@ ${nav('home')}
         <div class="duo__actions">
           <a class="btn btn--primary btn--sm" href="menu.html?menu=delivery">View delivery menu ${ICON.arrow}</a>
           <a class="btn btn--ghost btn--sm" href="${L.deliveryPdf}" ${ext}>PDF ${ICON.up}</a>
-          <a class="btn btn--ghost btn--sm" href="${L.order}" ${ext}>Order online ${ICON.up}</a>
+          <a class="btn btn--ghost btn--sm" href="order.html">Order online ${ICON.up}</a>
         </div>
       </article>
     </div>
@@ -412,7 +414,7 @@ ${nav('home')}
       <p class="eyebrow reveal">Visit us</p>
       <h2 class="display h-xl lines">${lines(['Come', 'hungry.'])}</h2>
       <div class="hero__cta reveal">
-        <a class="btn btn--primary" href="${L.order}" ${ext}>Order Online ${ICON.arrow}</a>
+        <a class="btn btn--primary" href="order.html">Order Online ${ICON.arrow}</a>
         <a class="btn btn--ghost" href="${L.maps}" ${ext}>Get Directions ${ICON.up}</a>
       </div>
     </header>
@@ -496,7 +498,7 @@ ${nav('menu')}
     <p class="only-in reveal">All prices are subject to GST &amp; service charge. This page follows the official in-house menu; the PDF is the original.</p>
     <p class="only-del reveal">All prices are subject to GST &amp; delivery charge. This page follows the official BM Delivery House menu (July 2024); the PDF is the original.</p>
     <div class="hero__cta reveal">
-      <a class="btn btn--primary" href="${L.order}" ${ext}>Order Online ${ICON.arrow}</a>
+      <a class="btn btn--primary" href="order.html">Order Online ${ICON.arrow}</a>
       <a class="btn btn--ghost only-in" href="${L.inhousePdf}" ${ext}>In-house menu PDF ${ICON.up}</a>
       <a class="btn btn--ghost only-del" href="${L.deliveryPdf}" ${ext}>Delivery menu PDF ${ICON.up}</a>
       <a class="btn btn--ghost only-in" href="tel:${PHONES.dine[0][0]}">Call +960 ${PHONES.dine[0][1]}</a>
@@ -508,7 +510,7 @@ ${nav('menu')}
 </main>
 ${footer('menu')}
 <div class="orderbar">
-  <a class="btn btn--primary" href="${L.order}" ${ext}>Order Online ${ICON.arrow}</a>
+  <a class="btn btn--primary" href="order.html">Order Online ${ICON.arrow}</a>
 </div>
 </body>
 </html>
@@ -683,7 +685,7 @@ ${phead({ bg: 'burger-and-fries', eyebrow: 'Visit us', title: ['Come', 'hungry.'
       <li class="reveal">
         <span class="ways__n">01</span>
         <div><h3 class="display h-md">Order online</h3><p>Use our online ordering to put your order together from your phone.</p></div>
-        <a class="btn btn--dark" href="${L.order}" ${ext}>Order Online ${ICON.arrow}</a>
+        <a class="btn btn--dark" href="order.html">Order Online ${ICON.arrow}</a>
       </li>
       <li class="reveal">
         <span class="ways__n">02</span>
@@ -746,7 +748,111 @@ ${footer('404')}
 `;
 }
 
-const PAGES = { 'index.html': home, 'menu.html': menu, 'about.html': about, 'gallery.html': gallery, 'contact.html': contact, '404.html': notFound };
+/* ---------- Order ---------- */
+function order() {
+  const config = { whatsapp: WHATSAPP, options: OPTIONS };
+  const item = (cat) => ([name, p, desc]) => `<li class="oitem" data-name="${esc(name)}" data-price="${p === null ? '' : p}" data-opts="${cat.opts.join(',')}">
+          <div class="oitem__text"><h3>${esc(name)}</h3>${desc ? `<p>${esc(desc)}</p>` : ''}</div>
+          <div class="oitem__buy">${p === null ? '<span class="oitem__tbc">Price on confirmation</span>' : price(p)}<button type="button" class="oitem__add" aria-label="Add ${esc(name)} to order">Add <span aria-hidden="true">+</span></button></div>
+        </li>`;
+  return `${head({
+    title: 'Order Online — Big Man & Co, Hulhumalé Delivery',
+    desc: 'Order Big Man & Co for delivery from the BM Delivery House in Hulhumalé: grilled burgers, the Manwich, Duper Pizza, loaded fries, Rockets subs and more. Build your order and send it in one tap.',
+    path: 'order.html',
+  })}
+<body class="has-cartbar">
+${nav('order')}
+<main id="main">
+
+<header class="phead phead--slim">
+  <div class="phead__bg">${img('burger-and-fries', { alt: '', eager: true })}</div>
+  <div class="wrap">
+    <p class="eyebrow fade">BM Delivery House · Hulhumalé</p>
+    <h1 class="display h-lg lines" style="margin-top:1rem">${lines(['Order online'])}</h1>
+    <p class="lede fade" style="--i:1">Build your order, then send it straight to the Delivery House. Prices in MVR, before GST &amp; delivery charge.</p>
+  </div>
+</header>
+
+<nav class="chipbar" aria-label="Order sections">
+  <ul>
+    ${CATALOGUE.map((c) => `<li><a href="#${c.id}" data-spy-link="${c.id}">${esc(c.title)}</a></li>`).join('\n    ')}
+  </ul>
+</nav>
+
+<div class="wrap olayout">
+  <div class="ocats">
+    ${CATALOGUE.map((c) => `<section class="ocat" id="${c.id}" data-spy="${c.id}" aria-labelledby="${c.id}-h">
+      <header class="ocat__head">
+        ${c.img ? `<div class="ocat__thumb">${img(c.img, { alt: '', sizes: '96px' })}</div>` : ''}
+        <div><h2 class="display h-md" id="${c.id}-h">${esc(c.title)}</h2>${c.note ? `<p>${esc(c.note)}</p>` : ''}</div>
+      </header>
+      <ul class="oitems">
+        ${c.items.map(item(c)).join('\n        ')}
+      </ul>
+    </section>`).join('\n    ')}
+  </div>
+
+  <aside class="cart" id="cart" aria-label="Your order">
+    <div class="cart__head">
+      <h2 class="display h-sm">Your order <span class="cart__count" data-cart-count>0</span></h2>
+      <button type="button" class="lb__btn cart__close" aria-label="Close your order">${ICON.close}</button>
+    </div>
+    <p class="cart__empty">Nothing here yet. Tap <strong>Add</strong> on anything you fancy.</p>
+    <div class="cart__body" hidden>
+      <ul class="cart__list"></ul>
+      <div class="cart__sum"><span>Estimated subtotal</span><strong class="cart__subtotal">MVR 0.00</strong></div>
+      <p class="cart__fine cart__tbc" hidden>Items marked “To confirm” are priced by Big Man when they reply.</p>
+      <p class="cart__fine">GST and delivery charge are added on top. Big Man confirms the final total and how to pay.</p>
+      <form class="checkout">
+        <h3>Delivery details</h3>
+        <label>Name<input name="name" autocomplete="name" required></label>
+        <label>Phone<input name="phone" type="tel" inputmode="tel" autocomplete="tel" required></label>
+        <label>Delivery address<textarea name="address" rows="2" autocomplete="street-address" required></textarea></label>
+        <label>Note for the kitchen <small>(optional)</small><input name="note"></label>
+        <button class="btn btn--primary" type="submit">Send order on WhatsApp ${ICON.arrow}</button>
+        <div class="checkout__row">
+          <a class="btn btn--ghost btn--sm" href="tel:${PHONES.delivery[0][0]}">Call ${PHONES.delivery[0][1]}</a>
+          <button type="button" class="btn btn--ghost btn--sm checkout__copy">Copy order</button>
+        </div>
+        <a class="link-arrow" href="${L.orderApp}" ${ext}>Use Big Man’s ordering app instead ${ICON.up}</a>
+      </form>
+      <button type="button" class="cart__clear">Clear order</button>
+    </div>
+  </aside>
+</div>
+
+</main>
+${footer('order')}
+
+<div class="cartbar" hidden>
+  <button type="button" class="btn btn--primary cartbar__open" aria-expanded="false" aria-controls="cart">
+    <span>View order · <span data-cart-count>0</span></span><span class="cartbar__total">MVR 0.00</span>
+  </button>
+</div>
+
+<dialog class="optdlg" aria-labelledby="optdlg-title">
+  <form method="dialog">
+    <div class="optdlg__head">
+      <h2 class="display h-sm optdlg__title" id="optdlg-title"></h2>
+      <button type="button" class="lb__btn" data-close aria-label="Close">${ICON.close}</button>
+    </div>
+    <div class="optdlg__groups"></div>
+    <label class="optdlg__note" for="opt-note">Special request <small>(optional)</small><input id="opt-note" name="note" maxlength="140"></label>
+    <div class="optdlg__foot">
+      <div class="qty optdlg__qty" role="group" aria-label="Quantity"><button type="button" data-act="dec" aria-label="One fewer">−</button><output>1</output><button type="button" data-act="inc" aria-label="One more">+</button></div>
+      <button class="btn btn--primary" type="submit"><span>Add to order</span><span class="optdlg__total"></span></button>
+    </div>
+  </form>
+</dialog>
+<div class="toast" role="status" aria-live="polite"></div>
+<script type="application/json" id="order-config">${JSON.stringify(config).replace(/</g, '\\u003c')}</script>
+<script src="assets/js/order.js" defer></script>
+</body>
+</html>
+`;
+}
+
+const PAGES = { 'index.html': home, 'menu.html': menu, 'about.html': about, 'gallery.html': gallery, 'contact.html': contact, 'order.html': order, '404.html': notFound };
 for (const [file, fn] of Object.entries(PAGES)) writeFileSync(join(root, file), fn());
 
 const indexed = Object.keys(PAGES).filter((f) => f !== '404.html');
